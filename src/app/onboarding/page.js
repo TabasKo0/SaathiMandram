@@ -5,6 +5,7 @@ import OTPWithProfile from "../../components/OTPWithProfile";
 
 
 export default function OnboardingPage() {
+    
     return (
         <main className='flex flex-col items-center justify-center min-h-screen bg-background'>
             
