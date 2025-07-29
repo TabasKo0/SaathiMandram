@@ -1,20 +1,38 @@
 'use client';
 
 const LANGUAGES = [
-  { label: 'Hindi', code: 'hi' },
-  { label: 'Bengali', code: 'bn' },
-  { label: 'Tamil', code: 'ta' },
-  { label: 'Telugu', code: 'te' },
-  { label: 'Malayalam', code: 'ml' },
-  { label: 'Gujarati', code: 'gu' },
-  { label: 'Kannada', code: 'kn' },
-  { label: 'Punjabi', code: 'pa' },
-  { label: 'Marathi', code: 'mr' },
+  { label: 'हिन्दी', code: 'hi' },
+  { label: 'বাংলা', code: 'bn' },
+  { label: 'தமிழ்', code: 'ta' },
+  { label: 'తెలుగు', code: 'te' },
+  { label: 'മലയാളം', code: 'ml' },
+  { label: 'ગુજરાતી', code: 'gu' },
+  { label: 'ಕನ್ನಡ', code: 'kn' },
+  { label: 'ਪੰਜਾਬੀ', code: 'pa' },
+  { label: 'मराठी', code: 'mr' },
   { label: 'Urdu', code: 'ur' },
   { label: 'Odia', code: 'or' },
   { label: 'Assamese', code: 'as' },
   { label: 'Sanskrit', code: 'sa' },
   { label: 'English', code: 'en' }, // Reset to original
+];
+
+// Array of unique background colors for each button
+const COLORS = [
+  '#7FDBFF', // bright pastel blue
+  '#FF6F91', // bright pastel pink
+  '#70E3B0', // bright pastel mint
+  '#FFD166', // bright pastel peach
+  '#B39DDB', // bright pastel lavender
+  '#A8E063', // bright pastel green
+  '#FF8DC7', // bright pastel rose
+  '#FFF275', // bright pastel yellow
+  '#8C9EFF', // bright pastel periwinkle
+  '#EA80FC', // bright pastel mauve
+  '#4DD0E1', // bright pastel aqua
+  '#FFB6B9', // bright pastel blush
+  '#97b88aff', // bright pastel cream
+  '#fabf81ff'  // bright pastel sky
 ];
 
 export default function LanguageButtons() {
@@ -27,18 +45,31 @@ export default function LanguageButtons() {
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '20px' }}>
-      {LANGUAGES.map(({ label, code }) => (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(7, 1fr)',
+        gridTemplateRows: 'repeat(2, auto)',
+        height: '300px',
+        gap: '40px',
+        marginTop: '40px',
+        margin: '40px',
+      }}
+    >
+      {LANGUAGES.map(({ label, code }, idx) => (
         <button
           key={code}
           onClick={() => changeLanguage(code)}
           style={{
-            padding: '8px 12px',
-            backgroundColor: '#007bff',
+            fontSize: '24px',
+            padding: '8px 8px',
+            backgroundColor: COLORS[idx % COLORS.length],
             color: 'white',
             border: 'none',
             borderRadius: '6px',
             cursor: 'pointer',
+            boxShadow: '0 0 8px 1px rgba(0,0,0,0.3)', // Small
+            textShadow: '4px 4px 16px rgba(0,0,0,0.7)', // Much bolder text shadow
           }}
         >
           {label}

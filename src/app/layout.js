@@ -22,8 +22,8 @@ export default function RootLayout({ children }) {
           <body className="bg-white text-gray-900">
         <header className="flex items-center px-6 py-4 shadow-md bg-gradient-to-r from-purple-500 to-yellow-500 text-white">
           {/* Logo Placeholder */}
-          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-            <span className="text-gray-700 font-bold text-sm">Logo</span>
+          <div className="w-15 h-15 bg-white rounded-full flex items-center justify-center">
+            <img src="/logo.png" alt="logo"></img>
           </div>
 
           {/* Beautiful Title */}
