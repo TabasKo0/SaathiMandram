@@ -125,6 +125,49 @@ const fetchUserInfo = async (phoneNumber) => {
 
 
   return (
+
+    <div className="flex justify-center">
+      <div className="max-w-md w-full p-4 margin-top-100 ">
+        {!loggedInPhone && (
+          <>
+            <h2 className="text-xl font-bold mb-4">Login with Phone OTP</h2>
+            <input
+              type="tel"
+              placeholder="+91XXXXXXXXXX"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="border p-2 mb-2 w-full"
+            />
+            <button
+              onClick={sendOtp}
+              className="bg-blue-600 text-white px-4 py-2 rounded w-full mb-4"
+            >
+              Send OTP
+            </button>
+
+            <div id="recaptcha-container"></div>
+
+            {confirmationResult && (
+              <>
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  className="border p-2 mb-4 w-full"
+                />
+                <button
+                  onClick={verifyOtp}
+                  className="bg-green-600 text-white px-4 py-2 rounded w-full mb-4"
+                >
+                  Verify OTP
+                </button>
+              </>
+            )}
+          </>
+        )}
+      </div>
+=======
     <div className="max-w-md mx-auto p-4">
       {!loggedInPhone && (
         <>
@@ -166,6 +209,7 @@ const fetchUserInfo = async (phoneNumber) => {
       )}
 
       
+
     </div>
   );
 }
