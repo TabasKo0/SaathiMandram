@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main>
      
-      <GoogleTranslateLoader />
+     
       <LanguageButtons />
         <div style={{
           position: "fixed",
@@ -43,8 +43,9 @@ export default function Home() {
         }}>
           <button
             onClick={() => window.location.href = "/onboarding"}
+             className='bg-yellow-500'
             style={{
-              backgroundColor: "#0070f3",
+              
               color: "#fff",
               border: "none",
               borderRadius: "50%",
