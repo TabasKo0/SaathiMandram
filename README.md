@@ -145,5 +145,5 @@ Saathi Mandram ensures that those who build our cities aren’t left behind in t
 * ☁️ Firebase Storage or S3 for image uploads
 * 📱 PWA support for mobile users
 * 🔎 Search and filter for job listings
-
+* 🎤 TTS based user onboarding for the illiterate
 ---
