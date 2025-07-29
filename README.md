@@ -4,7 +4,7 @@
 # 📱 Saathi Mandram – Job Onboarding Platform
 
 **Saathi Mandram** is a lightweight full-stack job onboarding platform for blue-collar workers and recruiters. It allows **job seekers** to register with basic details and apply for jobs, while **recruiters** can post job listings, manage applications, and view applicants — all on a responsive web app with OTP-based authentication.
-(PRESENTATION OF OUR IDEA)[https://www.transfernow.net/dl/20250729G765JbK9]
+[PRESENTATION OF OUR IDEA](https://www.transfernow.net/dl/20250729G765JbK9)
 ---
 
 ## 🔧 Tech Stack
