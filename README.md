@@ -7,6 +7,20 @@
 [PRESENTATION OF OUR IDEA](https://www.transfernow.net/dl/20250729G765JbK9)
 ---
 
+## Idea
+Saathi Mandram is a digital platform designed to bridge the gap between people seeking work—especially from underprivileged or rural backgrounds—and contractors or workforce providers who supply teams of laborers to companies.
+
+The platform is built around inclusivity and accessibility:
+
+It allows anyone to log in via OTP, even from shared or borrowed devices, reducing dependency on personal electronics.
+
+It integrates multi-language support using Google Translate, ensuring that users can interact in their own language, regardless of literacy or region.
+
+
+At its core is a smart job-matching algorithm that efficiently connects workers to the right contractors based on skills, location, and availability.
+
+Saathi Mandram is not just a job board — it’s a socially-conscious tool to unlock the workforce potential of India’s underserved communities through thoughtful technology.
+
 ## 🔧 Tech Stack
 
 ### ⚙️ Backend
