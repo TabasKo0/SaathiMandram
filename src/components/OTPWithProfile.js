@@ -165,7 +165,7 @@ const fetchUserInfo = async (phoneNumber) => {
         </>
       )}
 
-    
+      
     </div>
   );
 }
