@@ -4,8 +4,11 @@ import { useEffect } from 'react';
 
 export default function GoogleTranslateLoader() {
   useEffect(() => {
+    if (window.google?.translate?.TranslateElement) return;
+
     const script = document.createElement('script');
-    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.src =
+      '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
     script.async = true;
     document.body.appendChild(script);
 
@@ -15,8 +18,7 @@ export default function GoogleTranslateLoader() {
           pageLanguage: 'en',
           includedLanguages:
             'en,hi,bn,ta,te,ml,gu,kn,pa,mr,ur,or,as,sa',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: false,
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
         },
         'google_translate_element'
       );
