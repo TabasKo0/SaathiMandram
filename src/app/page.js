@@ -35,7 +35,33 @@ export default function Home() {
      
       <GoogleTranslateLoader />
       <LanguageButtons />
-        
+        <div style={{
+          position: "fixed",
+          bottom: "24px",
+          right: "24px",
+          zIndex: 1000
+        }}>
+          <button
+            onClick={() => window.location.href = "/onboarding"}
+            style={{
+              backgroundColor: "#0070f3",
+              color: "#fff",
+              border: "none",
+              borderRadius: "50%",
+              width: "56px",
+              height: "56px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "24px",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+              cursor: "pointer"
+            }}
+            aria-label="Go to onboarding"
+          >
+            <span style={{display: "inline-block", transform: "translateX(2px)"}}>&#8594;</span>
+          </button>
+        </div>
     </main>
   );
 }
