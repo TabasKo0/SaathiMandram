@@ -10,10 +10,10 @@ const LANGUAGES = [
   { label: 'ಕನ್ನಡ', code: 'kn' },
   { label: 'ਪੰਜਾਬੀ', code: 'pa' },
   { label: 'मराठी', code: 'mr' },
-  { label: 'Urdu', code: 'ur' },
-  { label: 'Odia', code: 'or' },
-  { label: 'Assamese', code: 'as' },
-  { label: 'Sanskrit', code: 'sa' },
+  { label: 'اردو ', code: 'ur' },
+  { label: 'ଓଡ଼ିଆ ', code: 'or' },
+  { label: 'অসমীয়া ', code: 'as' },
+  { label: 'संस्कृतम्', code: 'sa' },
   { label: 'English', code: 'en' }, // Reset to original
 ];
 
@@ -47,10 +47,10 @@ export default function LanguageButtons() {
   return (
     <div
       style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(7, 1fr)',
-        gridTemplateRows: 'repeat(2, auto)',
-        height: '300px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
         gap: '40px',
         marginTop: '40px',
         margin: '40px',
@@ -65,6 +65,8 @@ export default function LanguageButtons() {
             padding: '8px 8px',
             backgroundColor: COLORS[idx % COLORS.length],
             color: 'white',
+            width: '10em',
+            height: '6em',
             border: 'none',
             borderRadius: '6px',
             cursor: 'pointer',

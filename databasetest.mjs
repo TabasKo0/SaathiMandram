@@ -13,7 +13,7 @@ db.prepare(`
 `).run();
 
 // Delete user with the specified phone number
-//db.prepare("DELETE FROM users WHERE phone = ?").run(phone);
+db.prepare("DELETE FROM users WHERE phone = ?").run(phone);
 
 const users = db.prepare("SELECT * FROM users ").all();
 console.log("👥 Users:");

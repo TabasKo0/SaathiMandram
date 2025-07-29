@@ -91,11 +91,17 @@ async function submitRecruiter(e) {
       setLoggedInPhone(phone);
       setJobSeekerData((d) => ({ ...d, phone }));
       setRecruiterData((d) => ({ ...d, phone }));
+      if (pic){
+        router.push("/home/profile");
+      }
     } else {
       router.push("/");
     }
     setPictureUrl(pic);
   }, []);
+
+
+
 
   // Handle input changes for both forms
   function handleJobSeekerChange(e) {
