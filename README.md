@@ -7,19 +7,18 @@
 [PRESENTATION OF OUR IDEA](https://www.transfernow.net/dl/20250729G765JbK9)
 ---
 
-## Idea
-Saathi Mandram is a digital platform designed to bridge the gap between people seeking work—especially from underprivileged or rural backgrounds—and contractors or workforce providers who supply teams of laborers to companies.
+## 🧭 Why Saathi Mandram Matters
+In many parts of India, migrant workers from rural villages fall prey to exploitative middlemen, known as dalals. These agents often promise lucrative jobs in distant cities like Mumbai or Delhi, but what awaits is a cycle of wage theft, abuse, and forced labor, with no one to turn to for help.
 
-The platform is built around inclusivity and accessibility:
+A hostel floor attendant from Assam once shared his experience — he was sent to Bombay for work, only to realize it was a scam. He was one of the lucky few who escaped, but many others never return, falling into a system that dehumanizes and exploits them. Their voices are silenced before they’re ever heard.
 
-It allows anyone to log in via OTP, even from shared or borrowed devices, reducing dependency on personal electronics.
+Saathi Mandram is built for them — the invisible workforce, the overlooked backbone of our economy. Those who aren't looked at twice.
+We aim to restore dignity, safety, and opportunity through a verified, transparent job onboarding platform that protects against fraud and connects workers directly with employers — no middlemen, no traps.
 
-It integrates multi-language support using Google Translate, ensuring that users can interact in their own language, regardless of literacy or region.
+Everyone deserves a chance to work with security and respect.
+Saathi Mandram ensures that those who build our cities aren’t left behind in the process.
 
 
-At its core is a smart job-matching algorithm that efficiently connects workers to the right contractors based on skills, location, and availability.
-
-Saathi Mandram is not just a job board — it’s a socially-conscious tool to unlock the workforce potential of India’s underserved communities through thoughtful technology.
 
 ## 🔧 Tech Stack
 
