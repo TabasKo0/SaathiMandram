@@ -19,9 +19,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+          <body className="bg-white text-gray-900">
+        <header className="flex items-center px-6 py-4 shadow-md bg-gradient-to-r from-purple-500 to-yellow-500 text-white">
+          {/* Logo Placeholder */}
+          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+            <span className="text-gray-700 font-bold text-sm">Logo</span>
+          </div>
+
+          {/* Beautiful Title */}
+          <h1 className="text-3xl font-extrabold tracking-wide drop-shadow-md">
+            &nbsp;Saathi Mangram
+          </h1>
+
+          {/* Spacer to balance flex layout */}
+          <div className="w-12 h-12" />
+        </header>
         {children}
       </body>
     </html>
