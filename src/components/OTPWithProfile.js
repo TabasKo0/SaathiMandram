@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 import { auth } from "@/lib/firebase";
@@ -8,6 +9,8 @@ import {
 } from "firebase/auth";
 
 export default function OTPWithProfile() {
+    const router = useRouter();
+
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
@@ -51,19 +54,22 @@ export default function OTPWithProfile() {
     setLoggedInPhone(phoneNumber);
     alert("Phone verified!");
 
-    // fetch existing user info if available
+    // Fetch user info and handle redirection
     fetchUserInfo(phoneNumber);
   } catch (err) {
     alert("Invalid OTP");
   }
 };
 
+
 const fetchUserInfo = async (phoneNumber) => {
   try {
     const res = await fetch(`/api/users?phone=${encodeURIComponent(phoneNumber)}`);
+
     if (res.ok) {
       const data = await res.json();
-      setUserInfo({
+
+      const user = {
         name: data.name ?? "",
         age: data.age ?? "",
         place: data.place ?? "",
@@ -71,33 +77,52 @@ const fetchUserInfo = async (phoneNumber) => {
         remarks: data.remarks ?? "",
         picture_link: data.picture_link ?? "",
         years_of_experience: data.years_of_experience ?? "",
-      });
+      };
+
+      setUserInfo(user);
+      sessionStorage.setItem("userInfo", JSON.stringify({ phone: phoneNumber, ...user }));
+
+      // ✅ Registered user → redirect to home
+      router.push("/home");
+    } else if (res.status === 404) {
+      // ❌ Not registered → redirect to /regidtration
+      sessionStorage.setItem("phoneOnly", phoneNumber);
+      router.push("/registration");
     } else {
-      console.log("No previous user data found.");
+      alert("Unexpected error: " + (await res.text()));
     }
   } catch (error) {
     console.error("Failed to fetch user data", error);
+    alert("Error checking user registration status.");
   }
 };
+
 
   const handleInputChange = (e) => {
     setUserInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const saveUserInfo = async () => {
-    try {
-      const res = await fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: loggedInPhone, ...userInfo }),
-      });
-      const data = await res.json();
-      if (res.ok) alert(data.message);
-      else alert(data.error);
-    } catch (err) {
-      alert("Failed to save user info");
+ const saveUserInfo = async () => {
+  try {
+    const res = await fetch("/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone: loggedInPhone, ...userInfo }),
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert(data.message);
+      sessionStorage.setItem("userInfo", JSON.stringify({ phone: loggedInPhone, ...userInfo }));
+      router.push("/home"); // Redirect after saving
+    } else {
+      alert(data.error);
     }
-  };
+  } catch (err) {
+    alert("Failed to save user info");
+  }
+};
+
 
   return (
     <div className="max-w-md mx-auto p-4">
@@ -140,75 +165,7 @@ const fetchUserInfo = async (phoneNumber) => {
         </>
       )}
 
-      {loggedInPhone && (
-        <>
-          <h2 className="text-xl font-bold mb-4">Fill Your Profile Info</h2>
-
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={userInfo.name}
-            onChange={handleInputChange}
-            className="border p-2 mb-2 w-full"
-          />
-          <input
-            type="number"
-            name="age"
-            placeholder="Age"
-            value={userInfo.age}
-            onChange={handleInputChange}
-            className="border p-2 mb-2 w-full"
-          />
-          <input
-            type="text"
-            name="place"
-            placeholder="Place"
-            value={userInfo.place}
-            onChange={handleInputChange}
-            className="border p-2 mb-2 w-full"
-          />
-          <input
-            type="text"
-            name="field_of_work"
-            placeholder="Field of Work"
-            value={userInfo.field_of_work}
-            onChange={handleInputChange}
-            className="border p-2 mb-2 w-full"
-          />
-          <input
-            type="text"
-            name="remarks"
-            placeholder="Remarks"
-            value={userInfo.remarks}
-            onChange={handleInputChange}
-            className="border p-2 mb-2 w-full"
-          />
-          <input
-            type="text"
-            name="picture_link"
-            placeholder="Picture Link"
-            value={userInfo.picture_link}
-            onChange={handleInputChange}
-            className="border p-2 mb-2 w-full"
-          />
-          <input
-            type="number"
-            name="years_of_experience"
-            placeholder="Years of Experience"
-            value={userInfo.years_of_experience}
-            onChange={handleInputChange}
-            className="border p-2 mb-4 w-full"
-          />
-
-          <button
-            onClick={saveUserInfo}
-            className="bg-indigo-600 text-white px-4 py-2 rounded w-full"
-          >
-            Save Profile
-          </button>
-        </>
-      )}
+    
     </div>
   );
 }

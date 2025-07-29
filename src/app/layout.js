@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import GoogleTranslateLoader from '../components/GoogleTranslateLoader';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,7 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      
           <body className="bg-white text-gray-900">
+             <GoogleTranslateLoader />
         <header className="flex items-center px-6 py-4 shadow-md bg-gradient-to-r from-purple-500 to-yellow-500 text-white">
           {/* Logo Placeholder */}
           <div className="w-15 h-15 bg-white rounded-full flex items-center justify-center">
