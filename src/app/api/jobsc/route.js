@@ -1,18 +1,35 @@
-// app/api/jobs/route.js
 import { NextResponse } from "next/server";
 import db from "@/lib/db";
 
-export async function GET() {
-  try {
-    const jobs = db.prepare("SELECT * FROM jobs").all();
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const rawPhone = searchParams.get("phone");
+  if (!rawPhone) {
+    return NextResponse.json({ error: "Recruiter phone is required" }, { status: 400 });
+  }
+  const recruiterPhone = rawPhone.replace(/\s+/g, "");
 
-    // Add applicant count for each job
-    const jobsWithCount = jobs.map(job => {
-      const count = db.prepare("SELECT COUNT(*) as count FROM applications WHERE job_id = ?").get(job.id);
-      return { ...job, applicant_count: count.count };
+  try {
+    // Get jobs posted by this recruiter
+    const jobs = db.prepare("SELECT * FROM jobs WHERE recruiter_phone = ?").all(recruiterPhone);
+
+    // Append applicant details per job
+    const jobsWithApplicants = jobs.map(job => {
+      const applicants = db.prepare(`
+       SELECT u.name, u.phone, u.picture_link
+FROM applications a
+JOIN users u ON a.phone = u.phone
+WHERE a.job_id = ?
+      `).all(job.id);
+
+      return {
+        ...job,
+        applicant_count: applicants.length,
+        applicants
+      };
     });
 
-    return NextResponse.json(jobsWithCount);
+    return NextResponse.json(jobsWithApplicants);
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

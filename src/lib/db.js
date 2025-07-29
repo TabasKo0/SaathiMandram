@@ -32,7 +32,9 @@ db.prepare(`
     job_description TEXT,
     job_type TEXT,
     benefits TEXT,
-    applicants TEXT DEFAULT '[]'
+    applicants TEXT DEFAULT '[]',
+    location TEXT,
+    FOREIGN KEY (recruiter_phone) REFERENCES users(phone) ON DELETE CASCADE
   )
 `).run();
 

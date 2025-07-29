@@ -5,8 +5,8 @@ import db from "@/lib/db";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const phone = searchParams.get("phone");
-
+const phone = "+" + searchParams.get("phone").replace(/\s+/g, "");
+console.log(phone)
   if (!phone) {
     return NextResponse.json({ error: "Phone number is required" }, { status: 400 });
   }

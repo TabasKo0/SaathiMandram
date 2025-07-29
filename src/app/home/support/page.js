@@ -17,13 +17,13 @@ export default function Home() {
   return (
    <div
              
-               className="relative z-10 min-h-screen w-full p-5 snap-start"
+               className="relative z-10 min-h-screen  snap-start"
              >
 
        
                <main className="flex flex-col gap-[32px] items-center sm:items-start h-screen relative z-10">
 
-<div className="flex items-center h-screen absolute justify-center w-screen"> 
+<div className="flex items-center h-screen absolute justify-center w-full"> 
         {/* 📱 Phone Frame */}
         <div  className="relative bg-black overflow-show flex items-center justify-center w-[340px] h-[680px] border-[6px] border-green-900 rounded-[2rem] shadow-xl ">
 

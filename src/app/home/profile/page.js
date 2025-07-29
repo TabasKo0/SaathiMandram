@@ -19,12 +19,39 @@ const UserProfile = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch("/api/user")
+    const phone = sessionStorage.getItem("phoneOnly"); // assume phone stored here
+    if (!phone) {
+      setUser(dummyUser);
+      setError(true);
+      return;
+    }
+
+    fetch(`/api/users?phone=${phone}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch");
         return res.json();
       })
-      .then((data) => setUser(data))
+      .then((data) => {
+        // Map DB fields to frontend-friendly structure
+        console.log(data);
+        const mapped = {
+          image: data.picture_link || "/dummy.jpg",
+
+          name: data.name || "Unnamed",
+          age: data.age || "N/A",
+          gender: data.gender || "N/A", // add this field in db later if needed
+          fieldOfWork: data.field_of_work || "N/A",
+          experience: data.years_of_experience
+            ? `${data.years_of_experience} years`
+            : "N/A",
+          contact: data.phone || "N/A",
+          bio: data.remarks || "No bio available.",
+          position: data.position || "N/A",
+          company: data.company_name || "N/A",
+          is_recruiter: data.is_recruiter 
+        };
+        setUser(mapped);
+      })
       .catch((err) => {
         console.error("Server error:", err);
         setUser(dummyUser);
@@ -45,23 +72,27 @@ const UserProfile = () => {
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
         {/* Profile Image */}
         <div className="md:w-1/3 w-full h-80 md:h-auto">
-            <img
-                src={user.image}
-                alt={`${user.name}'s profile`}
-                className="w-full h-full object-cover"
-            />
-            </div>
-
+          <img
+            src={user.image}
+            alt={`${user.name}'s profile`}
+            className="w-full h-full object-cover rounded-xl"
+          />
+        </div>
 
         {/* Profile Info */}
         <div className="flex-1 space-y-3 text-gray-800 text-lg">
           <h2 className="text-3xl font-bold text-blue-700">{user.name}</h2>
+          <>{console.log(user)}</>
+          <text style={{ fontWeight: "bold", color: user.is_recruiter ? "green" : "blue" }}>{user.is_recruiter ? "Recruiter" : "Job Seeker"}</text>
           <p><strong>Age:</strong> {user.age}</p>
-          <p><strong>Gender:</strong> {user.gender}</p>
+         {!user.is_recruiter? <><p><strong>Gender:</strong> {user.gender}</p>
           <p><strong>Field of Work:</strong> {user.fieldOfWork}</p>
           <p><strong>Experience:</strong> {user.experience}</p>
+            <p><strong>Bio:</strong> {user.bio}</p></>: <><p><strong>Position:</strong> {user.position}</p>
+          <p><strong>Company:</strong> {user.company}</p></>}
+
           <p><strong>Contact:</strong> {user.contact}</p>
-          <p><strong>Bio:</strong> {user.bio}</p>
+        
         </div>
       </div>
     </div>
